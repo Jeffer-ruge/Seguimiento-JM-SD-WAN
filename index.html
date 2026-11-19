@@ -123,9 +123,9 @@ main .project-header .client-logo{display:block;flex:none;width:clamp(136px,16vw
 .task-status[data-status=issue]{background:#ffe7ca;color:#793b09}
 .migration-stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(245px,100%),1fr));align-items:start;gap:12px;margin-top:12px}
 .migration-stage{min-width:0}
-.migration-stage header{display:flex;justify-content:space-between;align-items:center;gap:8px;padding-bottom:8px;border-bottom:1px solid #8799b64d}
+.migration-stage header{display:grid;grid-template-columns:minmax(0,1fr) min(43%,124px);align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid #8799b64d}
 .migration-stage header h3{margin:0;font-size:1rem}
-.migration-stage header img{flex:none;width:45px;height:30px;object-fit:contain;border-radius:5px}
+.migration-stage header img{display:block;width:100%;height:auto;max-height:none;aspect-ratio:3/2;object-fit:contain;mix-blend-mode:normal;border:1px solid #8cadce80;border-radius:8px;background:#102846}
 .migration-stage ol{padding-left:25px;margin:0}
 .migration-step{padding:8px 0 8px 4px}
 .migration-step+.migration-step{border-top:1px solid #8799b64d}
@@ -148,12 +148,25 @@ main .project-header .client-logo{display:block;flex:none;width:clamp(136px,16vw
 .plane-wing{inset:52% 36% 2% 20%;background:#a9c9eb;clip-path:polygon(29% 0,100% 0,47% 100%,0 100%)}
 .plane-fin{inset:6% 79% 47% 4%;background:#95c7ff;clip-path:polygon(0 0,30% 0,100% 100%,20% 100%)}
 .plane-gear{inset:75% 20% 8% 23%;background:radial-gradient(circle at 15% 60%,#152f46 0 18%,transparent 20%),radial-gradient(circle at 76% 60%,#152f46 0 18%,transparent 20%)}
-.import-flight[data-stage=flight] .cargo-plane{animation:cargo-takeoff 12s ease-in-out infinite}
-.import-flight[data-stage=flight] .flight-parcel{animation:cargo-loading 12s ease-in-out infinite}
+.import-flight[data-stage=flight] .cargo-plane{animation:cargo-takeoff 7s ease-in-out infinite}
+.import-flight[data-stage=flight] .flight-parcel{animation:cargo-loading 7s ease-in-out infinite}
 .import-flight[data-stage=arrived] .cargo-plane{transform:translateX(50%)}
 .import-flight[data-stage=arrived] .flight-parcel{left:79%}
-@keyframes cargo-takeoff{0%,29%{transform:none;opacity:1}42%{transform:translate(26%,0);opacity:1}68%,89%{transform:translate(66%,-74%) rotate(-14deg);opacity:1}96%{transform:translate(66%,-74%) rotate(-14deg);opacity:0}97%{transform:none;opacity:0}100%{transform:none;opacity:1}}
-@keyframes cargo-loading{0%,12%{transform:none;opacity:1}26%{transform:translate(270%,-45%);opacity:1}31%,96%{transform:translate(270%,-45%);opacity:0}97%{transform:none;opacity:0}100%{transform:none;opacity:1}}
+@keyframes cargo-takeoff{
+ 0%,18%{transform:none;opacity:1}
+ 32%{transform:translate(24%,0)}
+ 68%,84%{transform:translate(66%,-74%) rotate(-14deg);opacity:1}
+ 92%{transform:translate(66%,-74%) rotate(-14deg);opacity:0}
+ 93%{transform:none;opacity:0}
+ 100%{transform:none;opacity:1}
+}
+@keyframes cargo-loading{
+ 0%{transform:none;opacity:1}
+ 15%{transform:translate(270%,-45%);opacity:1}
+ 18%,92%{transform:translate(270%,-45%);opacity:0}
+ 93%{transform:none;opacity:0}
+ 100%{transform:none;opacity:1}
+}
 @media(prefers-reduced-motion:reduce){
  .import-flight[data-stage=flight] .cargo-plane{animation:none;transform:translate(66%,-74%) rotate(-14deg)}
  .import-flight[data-stage=flight] .flight-parcel{animation:none;opacity:0}
@@ -504,7 +517,7 @@ function migrationChecklist(phases){
  }
  return '<div class="migration-stages">'+groups.map(({stage,items,start})=>
    '<section class="card migration-stage"><header><h3>'+h(stage?.label||'Otras actividades')+'</h3>'+
-   (stage?.image?'<img src="'+stage.image+'" alt="" width="96" height="64">':'')+
+   (stage?.image?'<img src="'+stage.image+'" alt="" width="124" height="83">':'')+
    '</header><ol start="'+start+'">'+items.join('')+'</ol></section>').join('')+'</div>';
 }
 
