@@ -58,22 +58,24 @@ main{margin:0 auto;padding:0 clamp(12px,2.5vw,40px) 12px;max-width:1680px}
 @media(max-width:740px){.calendar-lane{min-height:22px}.schedule-row{padding:5px 6px}.schedule-axis{padding:0 6px}.charts{grid-template-columns:1fr}.overall-panel{gap:6px}.card{padding:12px}.project-header{gap:6px}.quick-nav a{padding:6px 7px}.fiber-logo{width:112px;height:33px;padding:6px 10px}.fiber-logo img{width:87px}.project-header .client-logo{width:91px}.file-actions{gap:4px}.toolbar{flex-wrap:wrap;gap:5px}.metric strong{font-size:27px}}
 @media(max-width:420px){.project-header .client-logo{width:64px}.fiber-logo{width:92px}.fiber-logo img{width:72px}.quick-nav a{font-size:12px;padding:5px}.project-header{height:48px}.schedule-key{gap:4px 7px}}
 
-#openings-dashboard{display:grid;gap:10px;min-width:0}
-.opening-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.opening-group{--group-color:#1d5498;--group-tint:#e9f2ff;display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"icon title title" "count count share" "track track track";align-items:center;gap:7px 8px;width:100%;min-height:91px;padding:10px 12px;text-align:left;color:#183457;background:linear-gradient(145deg,#fff 56%,var(--group-tint));border:1px solid #d2e0f0;border-radius:12px;box-shadow:0 2px 7px #173a660d;transition:background-color 150ms ease,border-color 150ms ease,box-shadow 150ms ease}
-.opening-group[data-opening-group="delivered"]{--group-color:#116555;--group-tint:#e5f5ef}
-.opening-group[data-opening-group="commercial"]{--group-color:#744b08;--group-tint:#fff4df}
-.opening-group[data-opening-group="client"]{--group-color:#644699;--group-tint:#f2ecff}
-.opening-group:hover{border-color:var(--group-color);box-shadow:0 3px 10px #173a6614}
-.opening-group[aria-pressed="true"]{color:var(--group-color);background:linear-gradient(140deg,var(--group-tint),#fff);border-color:var(--group-color);box-shadow:inset 0 0 0 1px var(--group-tint)}
+#openings-dashboard{display:grid;grid-template-columns:minmax(235px,24%) minmax(0,1fr);grid-template-rows:auto 1fr;grid-template-areas:"sidebar cards" "sidebar data";gap:10px;align-items:start;min-width:0}
+.opening-sidebar,.opening-data{display:grid;gap:10px;min-width:0}
+.opening-sidebar{grid-area:sidebar}.opening-data{grid-area:data}
+.opening-cards{grid-area:cards;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.opening-group{--group-color:#174e92;--group-tint:#dcecff;--group-border:#9bc3ef;display:grid;grid-template-rows:44px minmax(2.4em,auto) auto auto 5px;justify-items:center;align-items:center;gap:5px;width:100%;min-width:0;padding:11px 9px;text-align:center;color:var(--group-color);background:linear-gradient(150deg,#fff,var(--group-tint) 76%);border:1px solid var(--group-border);border-radius:12px;box-shadow:0 2px 7px #173a660d;transition:border-color 150ms ease,box-shadow 150ms ease}
+.opening-group[data-opening-group="delivered"]{--group-color:#0c624b;--group-tint:#d9f5e7;--group-border:#94d4b6}
+.opening-group[data-opening-group="commercial"]{--group-color:#754405;--group-tint:#ffefcc;--group-border:#e9bd69}
+.opening-group[data-opening-group="client"]{--group-color:#5d3a82;--group-tint:#f0e2ff;--group-border:#cfb0ef}
+.opening-group:hover{background:linear-gradient(150deg,#fff 22%,var(--group-tint));border-color:var(--group-color);box-shadow:0 3px 10px #173a6620}
+.opening-group[aria-pressed="true"]{background:linear-gradient(150deg,#fff 6%,var(--group-tint) 72%);border-color:var(--group-color);box-shadow:inset 0 0 0 1px var(--group-color)}
 .opening-group:focus-visible,.opening-table:focus-visible{outline:2px solid #1d5498;outline-offset:2px}
-.opening-group strong{grid-area:count;font-size:clamp(23px,2.8vw,33px);line-height:1;color:var(--group-color);font-variant-numeric:tabular-nums}
-.opening-group-label{grid-area:title;line-height:1.2;font-size:13px;overflow-wrap:anywhere}
-.opening-group-icon{grid-area:icon;display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--group-tint);color:var(--group-color)}
-.opening-group-icon svg{width:18px;height:18px}
-.opening-group .opening-share{grid-area:share;justify-self:end;text-align:right;color:var(--group-color);font-size:12px;font-weight:650;font-variant-numeric:tabular-nums;line-height:1.2}
-.opening-group-meter{grid-area:track;display:block;height:4px;border-radius:4px;background:var(--group-tint);overflow:hidden}
-.opening-group-meter::after{content:"";display:block;width:var(--group-share);height:100%;background:var(--group-color);border-radius:inherit}
+.opening-group strong{font-size:clamp(26px,3vw,36px);line-height:1;font-variant-numeric:tabular-nums}
+.opening-group-label{margin:0;line-height:1.2;font-size:13px;overflow-wrap:anywhere}
+.opening-group-icon{display:grid;place-items:center;width:44px;height:44px;margin:0;border-radius:11px;background:var(--group-tint);border:1px solid var(--group-border)}
+.opening-group-icon svg{width:27px;height:27px}
+.opening-group .opening-share{font-size:12px;font-weight:650;font-variant-numeric:tabular-nums;line-height:1.2}
+.opening-group .meter{display:block;width:min(86%,146px);height:5px;margin:0;background:#ffffffb8}
+.opening-group .meter i{background:var(--group-color)}
 .opening-panel{padding:12px;min-width:0}
 .opening-panel-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px 14px;margin-bottom:9px}
 .opening-panel-head h2{margin:0;font-size:16px}
@@ -86,26 +88,54 @@ main{margin:0 auto;padding:0 clamp(12px,2.5vw,40px) 12px;max-width:1680px}
 .opening-table tbody tr:nth-child(even){background:#f6f9fd}
 .opening-table td small{display:block;margin-top:2px;font-size:12px;color:#445e7f}
 .opening-table th:first-child{width:22%}.opening-table th:nth-child(2){width:34%}
-.opening-table[data-duration] th:nth-child(2){width:30%}
+.opening-table[data-duration] th:nth-child(2){width:36%}
 .opening-table[data-duration] th:nth-child(3){width:23%}
-.opening-age{display:grid;gap:4px;color:#174d8a;font-variant-numeric:tabular-nums}
-.opening-age i{display:block;height:4px;max-width:120px;border-radius:3px;background:#dce9f8}
-.opening-age i::after{content:"";display:block;width:var(--opening-age);height:100%;border-radius:inherit;background:#3874b4}
-.opening-table .opening-future{color:#754a06;font-weight:650}
-.opening-overview{display:grid;grid-template-columns:minmax(180px,1fr) minmax(0,2.6fr);gap:9px}
+[data-opening-band]{--age-color:#395573;--age-tint:#edf3fa}
+[data-opening-band="recent"]{--age-color:#126246;--age-tint:#e7f5ed}
+[data-opening-band="watch"]{--age-color:#785000;--age-tint:#fff3d7}
+[data-opening-band="limit"]{--age-color:#62457d;--age-tint:#f3eef9}
+[data-opening-band="late"]{--age-color:#972a37;--age-tint:#fcecee}
+[data-opening-band="future"]{--age-color:#185891;--age-tint:#e7f3ff}
+.opening-alerts h2,.opening-agenda h2{margin:0 0 5px;font-size:16px}
+.opening-alerts p,.opening-agenda p,.opening-departments .opening-region-note{margin:0;color:#445e7f;font-size:12px}
+.opening-age-filters{display:grid;gap:5px;margin-top:9px}
+.opening-age-filter{display:flex;align-items:center;justify-content:space-between;gap:7px;min-height:40px;padding:5px 9px;border:1px solid #d7e3ef;border-radius:8px;background:var(--age-tint);color:var(--age-color);box-shadow:none;text-align:left}
+.opening-age-filter:hover,.opening-age-filter[aria-pressed="true"]{color:var(--age-color);background:var(--age-tint);border-color:var(--age-color)}
+.opening-age-filter[aria-pressed="true"]{box-shadow:inset 0 0 0 1px var(--age-color)}
+.opening-age-filter span{display:flex;align-items:center;gap:5px;margin:0;font-size:12px;line-height:1.15}
+.opening-age-filter svg{flex:none;width:15px;height:15px}
+.opening-age-filter strong{font-size:17px;line-height:1;font-variant-numeric:tabular-nums}
+.opening-panel .opening-filter-result{margin:0 0 7px;font-size:12px;color:#445e7f}
+.opening-age{display:grid;gap:4px;color:var(--age-color);font-variant-numeric:tabular-nums}
+.opening-age i{display:block;height:4px;max-width:120px;border-radius:3px;background:var(--age-tint)}
+.opening-age i::after{content:"";display:block;width:var(--opening-age);height:100%;border-radius:inherit;background:var(--age-color)}
 .opening-gauge{display:grid;justify-items:center;align-content:center;gap:5px;text-align:center;background-color:#0b1a30;background-image:linear-gradient(180deg,#071223f0 2%,#0a1e39a6 43%,#071223f2 98%),var(--jm-fiber-image);background-position:center,54% center;background-size:cover;border-color:#294863;color:#fff}
 .opening-gauge h2{margin:0;color:#f1f8ff;font-size:16px}
 .opening-gauge p{margin:0;color:#c5d9eb;font-size:12px}
 .opening-gauge p strong{color:#f5fdff}
 .opening-gauge svg{display:block;width:min(130px,100%);height:auto}
 .opening-ring-percent{fill:#f8fcff;font-size:25px;font-weight:750;font-variant-numeric:tabular-nums}
+.opening-agenda ul{margin:0;padding:0;list-style:none;max-height:156px;overflow:auto}
+.opening-agenda li{display:flex;gap:8px;justify-content:space-between;padding:6px 0;font-size:13px;color:#395473;border-bottom:1px solid #e3ebf5}
+.opening-agenda li:last-child{border:0;padding-bottom:0}
+.opening-agenda li strong{color:#174e92;white-space:nowrap}
 .opening-departments h2{margin:0;font-size:16px}
-.opening-departments .opening-table{max-height:260px}
-.opening-departments .opening-table th:first-child{width:50%}
-.opening-departments .opening-table th:nth-child(2){width:28%}
-.opening-departments .opening-table td:nth-child(n+2),.opening-departments .opening-table th:nth-child(n+2){text-align:center}
-.opening-geo-bar .meter{height:4px;margin:4px auto 0;max-width:110px}
-@media(max-width:535px){.opening-overview{grid-template-columns:1fr}.opening-gauge{grid-template-columns:111px minmax(0,1fr);grid-template-rows:auto auto;align-items:center;column-gap:12px;text-align:left;justify-items:start;padding:10px 14px;background-image:linear-gradient(90deg,#071223a8 0%,#071223e8 39%,#071223f7 77%),var(--jm-fiber-image)}.opening-gauge h2{align-self:end}.opening-gauge p{align-self:start}.opening-gauge svg{grid-area:1 / 1 / 3 / 2}}
+.opening-departments .opening-table{max-height:254px}
+.opening-departments .opening-table th:first-child{width:28%}
+.opening-departments .opening-table th:nth-child(2){width:37%}
+.opening-departments .opening-table th:nth-child(3){width:21%}
+.opening-departments .opening-table td:nth-child(n+3),.opening-departments .opening-table th:nth-child(n+3){text-align:center}
+.opening-geo-bar .meter{height:5px}
+.opening-departments .opening-region-note{margin-top:7px}
+@media(max-width:820px){
+ #openings-dashboard{grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-template-areas:"gauge" "cards" "alerts" "detail" "agenda" "geo"}
+ .opening-sidebar,.opening-data{display:contents}
+ .opening-gauge{grid-area:gauge}.opening-alerts{grid-area:alerts}
+ #opening-detail{grid-area:detail}.opening-agenda{grid-area:agenda}.opening-departments{grid-area:geo}
+ .opening-age-filters{grid-template-columns:repeat(auto-fit,minmax(min(144px,100%),1fr))}
+ .opening-gauge{grid-template-columns:111px minmax(0,1fr);grid-template-rows:auto auto;align-items:center;column-gap:12px;text-align:left;justify-items:start;padding:10px 14px;background-image:linear-gradient(90deg,#071223a8 0%,#071223e8 39%,#071223f7 77%),var(--jm-fiber-image)}.opening-gauge h2{align-self:end}.opening-gauge p{align-self:start}.opening-gauge svg{grid-area:1 / 1 / 3 / 2}
+}
+@media(max-width:540px){.opening-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.opening-departments .opening-table th:nth-child(2){width:25%}.opening-departments .opening-table th:nth-child(3){width:25%}.opening-departments .opening-table th:first-child{width:32%}}
 @media(max-width:430px){.opening-table th,.opening-table td{padding:7px 5px}.opening-table[data-duration] th:nth-child(3){width:24%}.opening-group{padding:8px}}
 
 </style><style>
@@ -355,7 +385,7 @@ function progressIllustration(kind, progress, label) {
 </script>
 <script>
 let calendarScale = 'mes';
-const frontNames = {IM:'Importación', DC:'Implementación DC', AM:'Ampliaciones', SD:'Migraciones SD-WAN', MA:'MESA DE AYUDA'};
+const frontNames = {IM:'Importación', DC:'Implementación DC', AM:'Ampliaciones', SD:'Migraciones SD-WAN', MA:'Mesa de ayuda'};
 const frontColors = {IM:'#36559c', DC:'#126e80', AM:'#4674bd', SD:'#53528f', MA:'#087b9a'};
 
 function calendarBands(min, max, unit) {
@@ -462,6 +492,9 @@ function graphicFrames(el) {
 }
 
 function playGraphic(el) {
+  if (el.closest('.opening-group') && openingRingMotion.matches) {
+    return el.animate([{opacity:.45},{opacity:1}],{duration:240,easing:'ease-out'});
+  }
   if (el.matches('.opening-ring-fill')) {
     const segment=Number(el.dataset.segment);
     if (openingRingMotion.matches) {
@@ -495,7 +528,14 @@ const chartObserver = new IntersectionObserver(entries => {
     if (!isIntersecting) { stopGroup(group); continue; }
     if (group.animations.length) continue;
     group.animations = group.graphics.map(playGraphic);
-    if (target.matches('.card,.metric') && !(target.matches('.opening-gauge') && openingRingMotion.matches)) {
+    if (target.matches('.opening-group')) {
+      const icon=target.querySelector('.opening-group-icon');
+      group.animations.push(icon.animate(
+        openingRingMotion.matches?[{opacity:.65},{opacity:1}]:
+          [{opacity:.7,transform:'translateY(4px)'},{opacity:1,transform:'none'}],
+        {duration:260,easing:'ease-out'}
+      ));
+    } else if (target.matches('.card,.metric') && !(target.matches('.opening-gauge') && openingRingMotion.matches)) {
       group.animations.push(target.animate([
         {opacity:.7,transform:'translateY(7px)'}, {opacity:1,transform:'none'}
       ], {duration:350,easing:'ease-out'}));
@@ -505,11 +545,12 @@ const chartObserver = new IntersectionObserver(entries => {
 
 const openingRingMotion=matchMedia('(prefers-reduced-motion: reduce)');
 openingRingMotion.addEventListener('change',()=>{
-  const gauge=document.querySelector('.opening-gauge');
-  if(!gauge || !motionGroups.has(gauge)) return;
-  stopGroup(motionGroups.get(gauge));
-  chartObserver.unobserve(gauge);
-  chartObserver.observe(gauge);
+  document.querySelectorAll('.opening-gauge,.opening-group').forEach(target=>{
+    if(!motionGroups.has(target)) return;
+    stopGroup(motionGroups.get(target));
+    chartObserver.unobserve(target);
+    chartObserver.observe(target);
+  });
 });
 
 const supportAnimations=new Map();
@@ -574,7 +615,7 @@ function observeProjectCharts() {
     motionGroups.set(card,{graphics:[],animations:[]});
   });
   document.querySelectorAll('#content '+graphicSelector.split(', ').join(', #content ')).forEach(graphic => {
-    const container = graphic.closest('.calendar-lane,.iso-art,.status-row,.portfolio-track,.chart-card,.metric,.card');
+    const container = graphic.closest('.calendar-lane,.iso-art,.status-row,.portfolio-track,.chart-card,.opening-group,.metric,.card');
     if (!container) return;
     if (!motionGroups.has(container)) motionGroups.set(container,{graphics:[],animations:[]});
     motionGroups.get(container).graphics.push(graphic);
@@ -599,7 +640,7 @@ const routes = {
  datacenters:['Implementación DC','Implementación de datacenters','Infraestructura','▥','DC'],
  equipos:['Migraciones SD-WAN','Migraciones SD-WAN','Rubro del proyecto','↗','SD'],
  riesgos:['Matriz Riesgos','Matriz de riesgos','Seguimiento del proyecto',''],
- 'mesa-ayuda':['MESA DE AYUDA','MESA DE AYUDA','Soporte y atención','', 'MA'],
+ 'mesa-ayuda':[frontNames.MA,frontNames.MA,'Soporte y atención','', 'MA'],
  aperturas:['Aperturas · 2025','Aperturas 2025','Matriz de aperturas','▤']
 };
 let data, current;
@@ -641,6 +682,20 @@ const openingIcons={
  managing:'<path d="M4 19h16M6 15l4-5 4 3 5-7m-4 0h4v4"/>'
 };
 let selectedOpeningGroup='managing';
+let selectedOpeningAge='all';
+const openingAgeBands={
+ all:'Todas',recent:'0 a 15 días',watch:'16 a 29 días',limit:'30 a 31 días',
+ late:'Más de 31 días',future:'Próximas',unknown:'Sin fecha'
+};
+const openingAgeIcons={
+ all:'<path d="M5 6h14M5 12h14M5 18h14"/>',
+ recent:'<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',
+ watch:'<path d="M12 3 2.8 20h18.4L12 3zm0 6v4m0 3h.01"/>',
+ limit:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+ late:'<path d="M8 3h8l5 5v8l-5 5H8l-5-5V8l5-5zm4 5v5m0 3h.01"/>',
+ future:'<rect x="4" y="6" width="16" height="15" rx="2"/><path d="M8 3v6m8-6v6M4 11h16m-11 5h6"/>',
+ unknown:'<circle cx="12" cy="12" r="9"/><path d="M8.5 12h7"/>'
+};
 
 function openingGroup(status){
  const key=cellKey(status).replace(/[._-]+/g,' ');
@@ -650,44 +705,89 @@ function openingGroup(status){
  return 'managing';
 }
 
+function openingAgeBand(days){
+ if(days===null) return 'unknown';
+ if(days<0) return 'future';
+ if(days<=15) return 'recent';
+ if(days<=29) return 'watch';
+ if(days<=31) return 'limit';
+ return 'late';
+}
+
 function openingAge(days,maximum){
- if(days===null) return 'Sin fecha válida';
- if(days<0) return '<span class="opening-future">En '+number(-days)+(days===-1?' día':' días')+'</span>';
+ if(days===null) return '<span class="opening-age">Sin fecha válida</span>';
+ if(days<0) return '<span class="opening-age">En '+number(-days)+(days===-1?' día':' días')+'</span>';
  const label=number(days)+(days===1?' día':' días');
  return '<span class="opening-age"><strong>'+label+'</strong><i aria-hidden="true" style="--opening-age:'+(100*days/maximum)+'%"></i></span>';
 }
 
+function openingDays(date,today){
+ return date?(today-timestamp(date))/xlsxDayMs:null;
+}
+
+function openingDatePanels(openings){
+ const today=timestamp(excelToday()), managing=openings.groups.managing;
+ const counts=Object.fromEntries(Object.keys(openingAgeBands).map(key=>[key,0]));
+ const dates=new Map();
+ counts.all=managing.length;
+ for(const row of managing){
+  const band=openingAgeBand(openingDays(row.date,today));
+  counts[band]++;
+  if(band==='future') dates.set(row.date,(dates.get(row.date)||0)+1);
+ }
+ const filters=Object.entries(openingAgeBands).map(([key,label])=>
+  '<button type="button" class="opening-age-filter" data-opening-age="'+key+'" data-opening-band="'+key+
+  '" aria-controls="opening-detail" aria-pressed="'+(selectedOpeningGroup==='managing'&&key===selectedOpeningAge)+
+  '"><span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+
+  openingAgeIcons[key]+'</svg>'+label+'</span><strong>'+number(counts[key])+'</strong></button>'
+ ).join('');
+ const agenda=[...dates].sort(([a],[b])=>a.localeCompare(b)).map(([date,count])=>
+  '<li><time datetime="'+date+'">'+dayLabel(date,true)+'</time><strong>'+number(count)+(count===1?' registro':' registros')+'</strong></li>'
+ ).join('');
+ return '<section class="card opening-alerts"><h2 id="opening-age-heading">Semaforización días apertura</h2>'+
+  '<p>En gestión · Días calendario desde la apertura JM</p>'+
+  '<div class="opening-age-filters" role="group" aria-labelledby="opening-age-heading">'+filters+'</div></section>'+
+  '<section class="card opening-agenda"><h2 id="opening-agenda-heading">Próximas aperturas</h2>'+
+  (agenda?'<ul aria-labelledby="opening-agenda-heading"'+(dates.size>4?' tabindex="0"':'')+'>'+agenda+'</ul>':
+  '<p>El grupo En gestión no tiene fechas de apertura futuras.</p>')+'</section>';
+}
+
 function openingDetail(openings,group){
  const managing=group==='managing', today=excelToday();
- const rows=openings.groups[group].map(row=>({
-  ...row, days:row.date?(timestamp(today)-timestamp(row.date))/xlsxDayMs:null
- })).sort((a,b)=>{
+ const todayStamp=timestamp(today);
+ const recordsInGroup=openings.groups[group].map(row=>{
+  const days=managing?openingDays(row.date,todayStamp):null;
+  return {...row,days,band:openingAgeBand(days)};
+ });
+ const band=managing?selectedOpeningAge:'all';
+ const rows=recordsInGroup.filter(row=>band==='all'||row.band===band).sort((a,b)=>{
   const identityOrder=Number(Boolean(b.store||b.id))-Number(Boolean(a.store||a.id));
   if(identityOrder) return identityOrder;
   if(managing && a.days!==b.days) return (b.days??-Infinity)-(a.days??-Infinity);
   return (a.store||a.id).localeCompare(b.store||b.id,'es',{numeric:true});
  });
- const maximum=rows.reduce((max,row)=>Math.max(max,row.days??0),1);
+ const maximum=recordsInGroup.reduce((max,row)=>Math.max(max,row.days??0),1);
  const title=openingGroups[group];
- const captions='<header class="opening-panel-head"><h2>'+title+'</h2><span>'+number(rows.length)+
-  (rows.length===1?' registro':' registros')+(managing?' · Al '+dayLabel(today,true):'')+'</span></header>';
- if(!rows.length) return captions+'<p>No hay registros en este grupo.</p>';
+ const total=recordsInGroup.length;
  const records=rows.map(row=>'<tr><td>'+h(row.city||'—')+'</td><td><strong>'+
   h(row.store||(row.id?'ID '+row.id:'Sin identificar'))+'</strong><small>'+h(row.status||'Sin estado')+'</small></td><td>'+
   h(row.date?dayLabel(row.date,true):row.dateText||'Sin fecha')+'</td>'+
-  (managing?'<td>'+openingAge(row.days,maximum)+'</td>':'')+'</tr>').join('');
+  (managing?'<td data-opening-band="'+row.band+'">'+openingAge(row.days,maximum)+'</td>':'')+'</tr>').join('');
  const sourceNote=!openings.hasCity||!openings.hasStore
   ? 'El Excel no trae '+[!openings.hasCity?'CIUDAD_SEDE':null,!openings.hasStore?'TIENDA':null].filter(Boolean).join(' ni ')+'.'
   : '';
- const dateNote=managing?'Días calendario entre la fecha de apertura JM y hoy.':'';
  const unidentified=rows.filter(row=>!row.store&&!row.id).length;
  const identityNote=unidentified?number(unidentified)+(unidentified===1?' registro sin tienda ni ID.':' registros sin tienda ni ID.'):'';
- const hint=[sourceNote,identityNote,dateNote].filter(Boolean).join(' ');
- return captions+'<div class="table-wrap opening-table" role="region" aria-label="Listado de sedes" tabindex="0"'+
+ const hint=[sourceNote,identityNote].filter(Boolean).join(' ');
+ const result=band==='all'?'':'<p class="opening-filter-result" role="status">'+number(rows.length)+' de '+number(total)+' registros · '+openingAgeBands[band]+'</p>';
+ const list=rows.length?'<div class="table-wrap opening-table" role="region" aria-label="Listado de sedes" tabindex="0"'+
   (managing?' data-duration':'')+'><table><thead><tr><th scope="col">Ciudad</th><th scope="col">'+
   (openings.hasStore?'Tienda':'Sede / ID')+'</th><th scope="col">Fecha apertura JM</th>'+
   (managing?'<th scope="col">Días desde apertura</th>':'')+'</tr></thead><tbody>'+records+
-  '</tbody></table></div>'+(hint?'<p class="opening-hint">'+hint+'</p>':'');
+   '</tbody></table></div>'+(hint?'<p class="opening-hint">'+hint+'</p>':''):'<p>No hay registros en esta selección.</p>';
+ const captions='<header class="opening-panel-head"><h2>'+title+'</h2><span>'+number(total)+
+  (total===1?' registro':' registros')+(managing?' · Al '+dayLabel(today,true):'')+'</span></header>';
+ return captions+'<div id="opening-records">'+result+list+'</div>';
 }
 
 function openingGauge(openings){
@@ -738,14 +838,14 @@ function openingDepartmentChart(openings){
   .sort((a,b)=>b.total-a.total||a.name.localeCompare(b.name,'es'));
  const rows=[...known,...(missing?[missing]:[])].map(({name,total,delivered})=>{
   const fraction=delivered/total;
-  return '<tr><td>'+h(name)+'</td><td>'+number(delivered)+' de '+number(total)+'</td><td class="opening-geo-bar"><strong>'+
-   percent(fraction)+'</strong>'+meter(fraction)+'</td></tr>';
+  return '<tr><td>'+h(name)+'</td><td class="opening-geo-bar">'+meter(fraction)+'</td><td>'+
+   number(delivered)+' de '+number(total)+'</td><td><strong>'+percent(fraction)+'</strong></td></tr>';
  }).join('');
  if(!known.length) return '';
  return '<section class="card opening-departments"><div class="opening-panel-head"><h2>Entregas por departamento</h2><span>'+
   number(openings.total-(missing?.total||0))+' de '+number(openings.total)+' registros ubicados</span></div>'+
   '<div class="table-wrap opening-table" role="region" aria-label="Avance de entregas por departamento" tabindex="0">'+
-  '<table><thead><tr><th scope="col">Departamento</th><th scope="col">Entregados / total</th><th scope="col">Avance</th></tr></thead><tbody>'+
+  '<table><thead><tr><th scope="col">Departamento</th><th scope="col" aria-label="Barra de avance"></th><th scope="col">Entregados / total</th><th scope="col">Avance</th></tr></thead><tbody>'+
   rows+'</tbody></table></div></section>';
 }
 
@@ -758,12 +858,25 @@ function openingView(){
   const icon='<span class="opening-group-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+openingIcons[group]+'</svg></span>';
   return '<button type="button" class="opening-group" data-opening-group="'+group+'" aria-controls="opening-detail" aria-pressed="'+
    (group===selectedOpeningGroup)+'">'+icon+'<span class="opening-group-label">'+label+'</span><strong>'+number(count)+'</strong><small class="opening-share">'+percent(share)+
-   ' del total</small><i class="opening-group-meter" aria-hidden="true" style="--group-share:'+(100*share)+'%"></i></button>';
+   ' del total</small><span class="meter" aria-hidden="true"><i style="width:'+(100*share)+'%"></i></span></button>';
  }).join('');
- return '<div id="openings-dashboard"><div class="opening-overview">'+openingGauge(openings)+
-  '<div class="opening-cards" role="group" aria-label="Estados de aperturas">'+cards+
-  '</div></div><section class="card opening-panel" id="opening-detail" aria-live="polite">'+
-  openingDetail(openings,selectedOpeningGroup)+'</section>'+openingDepartmentChart(openings)+'</div>';
+ return '<div id="openings-dashboard"><div class="opening-cards" role="group" aria-label="Estados de aperturas">'+cards+
+  '</div><div class="opening-sidebar">'+openingGauge(openings)+openingDatePanels(openings)+'</div>'+
+  '<div class="opening-data"><section class="card opening-panel" id="opening-detail">'+
+  openingDetail(openings,selectedOpeningGroup)+'</section>'+openingDepartmentChart(openings)+'</div></div>';
+}
+
+function selectOpening(group,band='all'){
+ if(group===selectedOpeningGroup && band===selectedOpeningAge) return;
+ selectedOpeningGroup=group;
+ selectedOpeningAge=band;
+ document.querySelectorAll('button[data-opening-group]').forEach(button=>{
+  button.setAttribute('aria-pressed',String(button.dataset.openingGroup===group));
+ });
+ document.querySelectorAll('button[data-opening-age]').forEach(button=>{
+  button.setAttribute('aria-pressed',String(group==='managing'&&button.dataset.openingAge===band));
+ });
+ $('#opening-detail').innerHTML=openingDetail(data.openings,group);
 }
 function riskView(){
  const rows=data?.risks;
@@ -862,7 +975,7 @@ function supportMeter(value,name) {
 }
 
 function mesaAyudaView(rubro) {
-  if (!rubro) return '<div class="card"><p>Carga la base JM que contiene MESA DE AYUDA en Cronograma y Actualización.</p></div>';
+  if (!rubro) return '<div class="card"><p>Carga la base JM que contiene '+frontNames.MA+' en Cronograma y Actualización.</p></div>';
   const label=percent(rubro.progress), fraction=rubro.progress??0;
   const reportadas=rubro.tasks.filter(task=>task.progress!=null).length;
   const report=reportadas+' de '+rubro.tasks.length+' tareas con avance';
@@ -870,7 +983,7 @@ function mesaAyudaView(rubro) {
   const siteBrand=document.querySelector('.fiber-logo img')?.getAttribute('src');
   const brand=siteBrand?'<span class="ma-brand" aria-hidden="true"><img src="'+h(siteBrand)+'" alt=""></span>':'';
   const rows=rubro.tasks.map(task=>'<li><div><h3>'+h(task.name)+'</h3><strong>'+percent(task.progress)+'</strong></div>'+supportMeter(task.progress,task.name)+'</li>').join('');
-  return '<section class="card ma-dashboard" aria-label="Avance de Mesa de Ayuda"><header class="ma-hero">'+brand+art+'<div class="ma-summary"><span>Avance de MESA DE AYUDA</span><strong>'+label+'</strong><p>'+dayLabel(rubro.start,true)+' — '+dayLabel(rubro.end,true)+'</p><small>'+report+' · Promedio simple</small></div></header><div class="ma-tasks"><h2>Avance por tarea</h2><ul>'+rows+'</ul></div></section>';
+  return '<section class="card ma-dashboard" aria-label="Avance de '+frontNames.MA+'"><header class="ma-hero">'+brand+art+'<div class="ma-summary"><span>Avance de '+frontNames.MA+'</span><strong>'+label+'</strong><p>'+dayLabel(rubro.start,true)+' — '+dayLabel(rubro.end,true)+'</p><small>'+report+' · Promedio simple</small></div></header><div class="ma-tasks"><h2>Avance por tarea</h2><ul>'+rows+'</ul></div></section>';
 }
 
 function paint(){
@@ -887,13 +1000,12 @@ addEventListener('hashchange',navigate);navigate();
 document.querySelector('main').addEventListener('click', event => {
   const opening=event.target.closest('button[data-opening-group]');
   if(opening && current==='aperturas'){
-    const group=opening.dataset.openingGroup;
-    if(group===selectedOpeningGroup) return;
-    selectedOpeningGroup=group;
-    document.querySelectorAll('button[data-opening-group]').forEach(button=>{
-      button.setAttribute('aria-pressed',String(button===opening));
-    });
-    $('#opening-detail').innerHTML=openingDetail(data.openings,group);
+    selectOpening(opening.dataset.openingGroup);
+    return;
+  }
+  const age=event.target.closest('button[data-opening-age]');
+  if(age && current==='aperturas'){
+    selectOpening('managing',age.dataset.openingAge);
     return;
   }
   const flightToggle=event.target.closest('[data-flight-toggle]');
@@ -1083,7 +1195,7 @@ function readMesaAyuda(update,schedule,asDate) {
   const progress=tasks.every(t=>t.progress!=null)?tasks.reduce((total,t)=>total+t.progress,0)/tasks.length:null;
   const weightRow=update.find(r=>r && cellKey(r[0])==='ma');
   const weight=weightRow ? sheetNumber(weightRow[2],'Peso de MESA DE AYUDA',0,1) : null;
-  return {id:id.toUpperCase(),name:'MESA DE AYUDA',start,end,quality,weight,progress,tasks};
+  return {id:id.toUpperCase(),name:frontNames.MA,start,end,quality,weight,progress,tasks};
 }
 
 async function parseJMWorkbook(file) {
@@ -1368,7 +1480,7 @@ async function buildUpdatePdf(snapshot,source,cutoff){
   const rubro=id=>snapshot.rubros.find(item=>item.id===id);
   const imported=rubro('IM'), support=rubro('MA');
   const fronts=snapshot.rubros;
-  const frontLabel=item=>item.id==='MA'?'Mesa de Ayuda':(frontNames[item.id]||item.name);
+  const frontLabel=item=>frontNames[item.id]||item.name;
   const cardLabels={DC:'Datacenters',SD:'SD-WAN'};
   const frontColor=item=>item.id==='MA'?teal:item.id==='SD'?violet:blue;
   const compactDate=new Intl.DateTimeFormat('es-CO',{day:'2-digit',month:'2-digit',year:'2-digit',timeZone:'UTC'});
@@ -1446,7 +1558,7 @@ async function buildUpdatePdf(snapshot,source,cutoff){
 
   const nextTop=detailTop-128;
   if(support){
-    section('Mesa de Ayuda',left,nextTop,width);
+    section(frontNames.MA,left,nextTop,width);
     const period=dayLabel(support.start)+' - '+dayLabel(support.end,true);
     text(page,period,left+width-155,nextTop-15,{color:white,size:9,max:146});
     box(page,left,nextTop-99,127,69,pale);
