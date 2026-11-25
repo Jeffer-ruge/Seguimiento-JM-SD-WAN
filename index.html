@@ -93,7 +93,6 @@ main{margin:0 auto;padding:0 clamp(12px,2.5vw,40px) 12px;max-width:1680px}
 [data-opening-band]{--age-color:#395573;--age-tint:#edf3fa}
 [data-opening-band="recent"]{--age-color:#126246;--age-tint:#e7f5ed}
 [data-opening-band="watch"]{--age-color:#785000;--age-tint:#fff3d7}
-[data-opening-band="limit"]{--age-color:#62457d;--age-tint:#f3eef9}
 [data-opening-band="late"]{--age-color:#972a37;--age-tint:#fcecee}
 [data-opening-band="future"]{--age-color:#185891;--age-tint:#e7f3ff}
 .opening-alerts h2,.opening-agenda h2{margin:0 0 5px;font-size:16px}
@@ -684,14 +683,13 @@ const openingIcons={
 let selectedOpeningGroup='managing';
 let selectedOpeningAge='all';
 const openingAgeBands={
- all:'Todas',recent:'0 a 15 días',watch:'16 a 29 días',limit:'30 a 31 días',
- late:'Más de 31 días',future:'Próximas',unknown:'Sin fecha'
+ all:'Todas',recent:'0 a 15 días',watch:'16 a 29 días',
+ late:'30 días o más',future:'Próximas',unknown:'Sin fecha'
 };
 const openingAgeIcons={
  all:'<path d="M5 6h14M5 12h14M5 18h14"/>',
  recent:'<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',
  watch:'<path d="M12 3 2.8 20h18.4L12 3zm0 6v4m0 3h.01"/>',
- limit:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
  late:'<path d="M8 3h8l5 5v8l-5 5H8l-5-5V8l5-5zm4 5v5m0 3h.01"/>',
  future:'<rect x="4" y="6" width="16" height="15" rx="2"/><path d="M8 3v6m8-6v6M4 11h16m-11 5h6"/>',
  unknown:'<circle cx="12" cy="12" r="9"/><path d="M8.5 12h7"/>'
@@ -710,7 +708,6 @@ function openingAgeBand(days){
  if(days<0) return 'future';
  if(days<=15) return 'recent';
  if(days<=29) return 'watch';
- if(days<=31) return 'limit';
  return 'late';
 }
 
