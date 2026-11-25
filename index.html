@@ -62,20 +62,21 @@ main{margin:0 auto;padding:0 clamp(12px,2.5vw,40px) 12px;max-width:1680px}
 .opening-sidebar,.opening-data{display:grid;gap:10px;min-width:0}
 .opening-sidebar{grid-area:sidebar}.opening-data{grid-area:data}
 .opening-cards{grid-area:cards;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
-.opening-group{--group-color:#174e92;--group-tint:#dcecff;--group-border:#9bc3ef;display:grid;grid-template-rows:44px minmax(2.4em,auto) auto auto 5px;justify-items:center;align-items:center;gap:5px;width:100%;min-width:0;padding:11px 9px;text-align:center;color:var(--group-color);background:linear-gradient(150deg,#fff,var(--group-tint) 76%);border:1px solid var(--group-border);border-radius:12px;box-shadow:0 2px 7px #173a660d;transition:border-color 150ms ease,box-shadow 150ms ease}
-.opening-group[data-opening-group="delivered"]{--group-color:#0c624b;--group-tint:#d9f5e7;--group-border:#94d4b6}
-.opening-group[data-opening-group="commercial"]{--group-color:#754405;--group-tint:#ffefcc;--group-border:#e9bd69}
-.opening-group[data-opening-group="client"]{--group-color:#5d3a82;--group-tint:#f0e2ff;--group-border:#cfb0ef}
-.opening-group:hover{background:linear-gradient(150deg,#fff 22%,var(--group-tint));border-color:var(--group-color);box-shadow:0 3px 10px #173a6620}
-.opening-group[aria-pressed="true"]{background:linear-gradient(150deg,#fff 6%,var(--group-tint) 72%);border-color:var(--group-color);box-shadow:inset 0 0 0 1px var(--group-color)}
+.opening-group{--group-base:#102d55;--group-deep:#061326;--group-accent:#b1daff;--group-background:linear-gradient(150deg,var(--group-base),var(--group-deep));display:grid;grid-template-rows:44px minmax(2.4em,auto) auto auto 5px;justify-items:center;align-items:center;gap:5px;width:100%;min-width:0;padding:11px 9px;text-align:center;color:#fff;background:var(--group-background);border:1px solid var(--group-base);border-radius:12px;box-shadow:0 4px 12px #132b4833;transition:border-color 150ms ease,box-shadow 150ms ease}
+.opening-group[data-opening-group="delivered"]{--group-base:#103b32;--group-deep:#061e19;--group-accent:#a2f0cc}
+.opening-group[data-opening-group="commercial"]{--group-base:#4c2f0d;--group-deep:#241608;--group-accent:#ffdfa3}
+.opening-group[data-opening-group="client"]{--group-base:#38244f;--group-deep:#1a112c;--group-accent:#e8ceff}
+.opening-group:hover{background:var(--group-background);border-color:var(--group-accent);box-shadow:0 5px 14px #132b4840}
+.opening-group[aria-pressed="true"]{border-color:var(--group-accent);box-shadow:inset 0 0 0 1px var(--group-accent),0 3px 10px #132b4826}
 .opening-group:focus-visible,.opening-table:focus-visible{outline:2px solid #1d5498;outline-offset:2px}
-.opening-group strong{font-size:clamp(26px,3vw,36px);line-height:1;font-variant-numeric:tabular-nums}
-.opening-group-label{margin:0;line-height:1.2;font-size:13px;overflow-wrap:anywhere}
-.opening-group-icon{display:grid;place-items:center;width:44px;height:44px;margin:0;border-radius:11px;background:var(--group-tint);border:1px solid var(--group-border)}
+.opening-group strong,.opening-group-label,.opening-group .opening-share{color:#fff}
+.opening-group strong{font-size:clamp(30px,3.2vw,41px);font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.opening-group-label{margin:0;line-height:1.2;font-size:clamp(14px,1.3vw,16px);font-weight:700;overflow-wrap:anywhere}
+.opening-group-icon{display:grid;place-items:center;width:44px;height:44px;margin:0;border-radius:11px;color:var(--group-accent);background:#ffffff15;border:1px solid #ffffff4a}
 .opening-group-icon svg{width:27px;height:27px}
-.opening-group .opening-share{font-size:12px;font-weight:650;font-variant-numeric:tabular-nums;line-height:1.2}
-.opening-group .meter{display:block;width:min(86%,146px);height:5px;margin:0;background:#ffffffb8}
-.opening-group .meter i{background:var(--group-color)}
+.opening-group .opening-share{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+.opening-group .meter{display:block;width:min(86%,146px);height:5px;margin:0;background:#ffffff38}
+.opening-group .meter i{background:var(--group-accent)}
 .opening-panel{padding:12px;min-width:0}
 .opening-panel-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px 14px;margin-bottom:9px}
 .opening-panel-head h2{margin:0;font-size:16px}
