@@ -426,12 +426,12 @@ function roadmap(d, selected = 'all') {
   }).join('');
   const weighted = d.rubros.filter(r => r.weight > 0);
   const segments = weighted.map(r=>'<div style="flex:'+r.weight+';--accent:'+frontColors[r.id]+'">'+meter(r.progress)+'</div>').join('');
-  const weights = weighted.map(r=>'<span style="--accent:'+frontColors[r.id]+'"><i></i>'+h(frontNames[r.id])+' <b>'+percent(r.weight)+'</b></span>').join('');
+  const weights = weighted.map(r=>'<span style="--accent:'+frontColors[r.id]+'"><i></i>'+h(frontNames[r.id])+'</span>').join('');
   const switcher = ['mes','trimestre'].map(k=>'<button type="button" data-scale="'+k+'" aria-pressed="'+(k===calendarScale)+'">'+(k==='mes'?'Meses':'Trimestres')+'</button>').join('');
-  const overview = '<div class="card overall-panel"><div><small>Avance ponderado</small><strong>'+percent(d.overall)+'</strong></div><div class="portfolio"><div class="portfolio-track">'+segments+'</div><div class="weight-labels">'+weights+'</div></div></div>';
+  const overview = '<div class="card overall-panel"><div><small>Avance General</small><strong>'+percent(d.overall)+'</strong></div><div class="portfolio"><div class="portfolio-track">'+segments+'</div><div class="weight-labels">'+weights+'</div></div></div>';
   return (selected==='all' ? overview : '') +
-    '<div class="card calendar-card"><div class="calendar-title"><h2>Calendario de implementación</h2><div class="scale-switch" role="group" aria-label="Escala del calendario">'+switcher+'</div></div>'+
-    '<div class="calendar-scroll" tabindex="0" aria-label="Calendario de rubros"><div class="calendar-sheet '+calendarScale+'"><div class="schedule-row schedule-axis"><b>Rubro y fechas</b><b>Avance</b><div><div class="year-bands">'+calendarBands(min,max,'año').map(band).join('')+'</div><div class="date-bands">'+bands.map(band).join('')+'</div></div></div>'+rows+'</div></div>'+
+    '<div class="card calendar-card"><div class="calendar-title"><h2>Cronograma de Implementación</h2><div class="scale-switch" role="group" aria-label="Escala del calendario">'+switcher+'</div></div>'+
+    '<div class="calendar-scroll" tabindex="0" aria-label="Calendario de rubros"><div class="calendar-sheet '+calendarScale+'"><div class="schedule-row schedule-axis"><b>Ámbitos</b><b>Avance</b><div><div class="year-bands">'+calendarBands(min,max,'año').map(band).join('')+'</div><div class="date-bands">'+bands.map(band).join('')+'</div></div></div>'+rows+'</div></div>'+
     '<div class="schedule-key"><span><i></i>Periodo planeado</span><span><i></i>Avance reportado</span><span><i></i>Hoy · '+dayLabel(today,true)+'</span></div></div>';
 }
 
@@ -1483,7 +1483,7 @@ async function buildUpdatePdf(snapshot,source,cutoff){
   const frontColor=item=>item.id==='MA'?teal:item.id==='SD'?violet:blue;
   const compactDate=new Intl.DateTimeFormat('es-CO',{day:'2-digit',month:'2-digit',year:'2-digit',timeZone:'UTC'});
   const date=value=>compactDate.format(timestamp(value));
-  metrics(page,[['Avance general',snapshot.overall],
+  metrics(page,[['Avance General',snapshot.overall],
     ...fronts.map(item=>[cardLabels[item.id]||frontLabel(item),item.progress,frontColor(item)])],666);
 
   function section(title,x,y,w){
@@ -1496,7 +1496,7 @@ async function buildUpdatePdf(snapshot,source,cutoff){
     text(page,value,x+w-valueWidth,y+2,{size:9,max:valueWidth-8,font:bold,color:blue});
   }
 
-  section('Cronograma del proyecto',left,655,width);
+  section('Cronograma de Implementación',left,655,width);
   const planned=rgb(.71,.82,.95);
   box(page,287,641,13,5,planned);
   text(page,'Plan',304,640,{color:white,size:8});
@@ -1515,6 +1515,7 @@ async function buildUpdatePdf(snapshot,source,cutoff){
   const step=Math.max(1,Math.ceil(months/6));
   const monthLabel=new Intl.DateTimeFormat('es-CO',{month:'short',year:'2-digit',timeZone:'UTC'});
   const firstRow=595, rowStep=22, gridTop=607, gridBottom=firstRow-(fronts.length-1)*rowStep-14;
+  text(page,'Ámbitos',left,614,{font:bold,size:9,color:muted});
   for(let month=0;month<months;month+=step){
     const t=Date.UTC(earliest.getUTCFullYear(),earliest.getUTCMonth()+month,1);
     line(page,axis(t),gridBottom,axis(t),gridTop,border,.7);
