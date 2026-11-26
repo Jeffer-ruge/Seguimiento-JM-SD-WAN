@@ -27,8 +27,13 @@ body{background:linear-gradient(135deg,#f8faff 0,#eef3fa 62%,#f6f9fc 100%) fixed
 .chart-card .legend{gap:8px}.chart-card .legend i{border-radius:2px}.chart-card:has(.curve) .legend i:first-child{background:repeating-linear-gradient(90deg,var(--mid) 0 5px,transparent 5px 7px)}
 .chart-card summary{min-height:42px}.cut{border-left:4px solid #557db9;background:linear-gradient(90deg,#e2ebfa,#f3f7fc)}
 .dc h2{margin-bottom:18px}.task .muted{color:#63728b}.building-scene{border:1px solid #e3ebf7}.status-row:nth-of-type(even){background:#f7f9fd}
-.overall-panel{display:grid;grid-template-columns:minmax(135px,.65fr) 2.4fr;gap:24px;align-items:center;margin-bottom:16px;background:linear-gradient(110deg,#fff,#edf3fd)}
+.card.overall-panel{display:grid;grid-template-columns:clamp(148px,16vw,178px) minmax(0,1fr);gap:10px;align-items:center;margin-bottom:10px;background:linear-gradient(110deg,#fff,#edf3fd)}
 .overall-panel strong{display:block;font-size:clamp(30px,3.6vw,48px);color:#203e77;letter-spacing:-.045em;line-height:1.15}
+.overall-summary{display:grid;justify-items:center;align-content:center;align-self:stretch;gap:2px;padding:7px 10px;text-align:center;border:1px solid #d3e4f6;border-radius:10px;background:#eaf3fd linear-gradient(110deg,#f3f8ff 4%,#eaf4ffed 54%,#d6eaffcb) center/cover;background-image:linear-gradient(110deg,#f3f8ff 4%,#eaf4ffed 54%,#d6eaffcb),var(--jm-fiber-image);background-position:center,64% center;background-size:cover}
+.overall-summary-label{display:flex;align-items:center;justify-content:center;gap:6px}
+.overall-summary-icon{display:grid;place-items:center;width:25px;height:25px;flex-shrink:0;border-radius:7px;background:#dfedfc;color:#255b9b}
+.overall-summary-icon svg{width:16px;height:16px}
+@media(max-width:520px){.card.overall-panel{grid-template-columns:minmax(0,1fr);gap:8px}}
 .overall-panel small{font-weight:650;color:var(--ink-secondary)}.portfolio-track{display:flex;gap:3px}.portfolio-track .meter{height:12px}
 .portfolio-track .meter,.planned-bar .meter{background:color-mix(in srgb,var(--accent) 25%,white)}.portfolio-track .meter i,.planned-bar .meter i{background:var(--accent)}
 .weight-labels{display:flex;flex-wrap:wrap;gap:4px 15px;margin-top:8px;font-size:12px;color:var(--ink-secondary)}.weight-labels span{display:inline-flex;align-items:center;gap:4px}.weight-labels i{width:7px;height:7px;border-radius:2px;background:var(--accent)}
@@ -428,7 +433,9 @@ function roadmap(d, selected = 'all') {
   const segments = weighted.map(r=>'<div style="flex:'+r.weight+';--accent:'+frontColors[r.id]+'">'+meter(r.progress)+'</div>').join('');
   const weights = weighted.map(r=>'<span style="--accent:'+frontColors[r.id]+'"><i></i>'+h(frontNames[r.id])+'</span>').join('');
   const switcher = ['mes','trimestre'].map(k=>'<button type="button" data-scale="'+k+'" aria-pressed="'+(k===calendarScale)+'">'+(k==='mes'?'Meses':'Trimestres')+'</button>').join('');
-  const overview = '<div class="card overall-panel"><div><small>Avance General</small><strong>'+percent(d.overall)+'</strong></div><div class="portfolio"><div class="portfolio-track">'+segments+'</div><div class="weight-labels">'+weights+'</div></div></div>';
+  const overview = '<div class="card overall-panel"><div class="overall-summary"><div class="overall-summary-label">'+
+    '<span class="overall-summary-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16M7 14l4-4 3 3 5-6m-4 0h4v4"/></svg></span>'+
+    '<small>Avance General</small></div><strong>'+percent(d.overall)+'</strong></div><div class="portfolio"><div class="portfolio-track">'+segments+'</div><div class="weight-labels">'+weights+'</div></div></div>';
   return (selected==='all' ? overview : '') +
     '<div class="card calendar-card"><div class="calendar-title"><h2>Cronograma de Implementación</h2><div class="scale-switch" role="group" aria-label="Escala del calendario">'+switcher+'</div></div>'+
     '<div class="calendar-scroll" tabindex="0" aria-label="Calendario de rubros"><div class="calendar-sheet '+calendarScale+'"><div class="schedule-row schedule-axis"><b>Ámbitos</b><b>Avance</b><div><div class="year-bands">'+calendarBands(min,max,'año').map(band).join('')+'</div><div class="date-bands">'+bands.map(band).join('')+'</div></div></div>'+rows+'</div></div>'+
