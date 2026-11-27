@@ -34,9 +34,15 @@ body{background:linear-gradient(135deg,#f8faff 0,#eef3fa 62%,#f6f9fc 100%) fixed
 .overall-summary-icon{display:grid;place-items:center;width:25px;height:25px;flex-shrink:0;border-radius:7px;background:#dfedfc;color:#255b9b}
 .overall-summary-icon svg{width:16px;height:16px}
 @media(max-width:520px){.card.overall-panel{grid-template-columns:minmax(0,1fr);gap:8px}}
-.overall-panel small{font-weight:650;color:var(--ink-secondary)}.portfolio-track{display:flex;gap:3px}.portfolio-track .meter{height:12px}
+.overall-panel small{font-weight:650;color:var(--ink-secondary)}
+.portfolio{min-width:0;container-type:inline-size}
+.portfolio-track{display:flex;gap:3px}
+.portfolio-scope{display:grid;grid-template-rows:12px auto;flex:var(--weight) 1 0;min-width:0;gap:5px}
+.portfolio-track .meter{height:12px}
+.portfolio-caption{color:var(--ink-secondary);text-align:center;font-size:12px;line-height:1.25;overflow-wrap:anywhere}
 .portfolio-track .meter,.planned-bar .meter{background:color-mix(in srgb,var(--accent) 25%,white)}.portfolio-track .meter i,.planned-bar .meter i{background:var(--accent)}
-.weight-labels{display:flex;flex-wrap:wrap;gap:4px 15px;margin-top:8px;font-size:12px;color:var(--ink-secondary)}.weight-labels span{display:inline-flex;align-items:center;gap:4px}.weight-labels i{width:7px;height:7px;border-radius:2px;background:var(--accent)}
+@container(max-width:650px){.portfolio-scope{flex:1 1 0}.portfolio-track{gap:6px}}
+@container(max-width:425px){.portfolio-track{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px 6px}}
 .calendar-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.calendar-title h2{margin:0}.scale-switch{display:flex;padding:3px;border:1px solid #d3deec;border-radius:9px;background:#edf2f8}.scale-switch button{min-height:34px;font-size:13px;box-shadow:none;border:0;background:transparent;color:#425777;padding:6px 10px}.scale-switch button[aria-pressed="true"]{background:#fff;color:#183c71;box-shadow:0 1px 4px #18356329}
 .calendar-scroll{overflow:auto}.calendar-sheet{min-width:660px}.schedule-row{display:grid;grid-template-columns:minmax(160px,.87fr) 59px minmax(340px,2fr);align-items:center;border-bottom:1px solid #e2e9f2;padding:0 8px;min-height:66px;column-gap:7px}
 .schedule-row:nth-child(odd){background:#f7faff}.schedule-row:hover:not(.schedule-axis){background:#edf3fb}.row-caption a{display:block;font-size:14px;font-weight:700;text-decoration:none}.row-caption a:hover{text-decoration:underline}.row-caption small{display:block;font-size:11px;margin-top:3px;color:#526580}.row-value{color:var(--accent);font-size:14px}
@@ -430,12 +436,12 @@ function roadmap(d, selected = 'all') {
       '<a class="planned-bar" href="#'+link+'" style="left:'+100*(start-min)/span+'%;width:'+100*(finish-start)/span+'%" aria-label="'+h(r.id==='SD'?frontNames.SD:r.name)+' · '+percent(r.progress)+'" title="'+dates+' · '+percent(r.progress)+'">'+meter(r.progress)+'</a>'+marker+'</div></div>';
   }).join('');
   const weighted = d.rubros.filter(r => r.weight > 0);
-  const segments = weighted.map(r=>'<div style="flex:'+r.weight+';--accent:'+frontColors[r.id]+'">'+meter(r.progress)+'</div>').join('');
-  const weights = weighted.map(r=>'<span style="--accent:'+frontColors[r.id]+'"><i></i>'+h(frontNames[r.id])+'</span>').join('');
+  const segments = weighted.map(r=>'<div class="portfolio-scope" style="--weight:'+r.weight+';--accent:'+frontColors[r.id]+'">'+
+    meter(r.progress)+'<span class="portfolio-caption">'+h(frontNames[r.id]||r.name)+'</span></div>').join('');
   const switcher = ['mes','trimestre'].map(k=>'<button type="button" data-scale="'+k+'" aria-pressed="'+(k===calendarScale)+'">'+(k==='mes'?'Meses':'Trimestres')+'</button>').join('');
   const overview = '<div class="card overall-panel"><div class="overall-summary"><div class="overall-summary-label">'+
     '<span class="overall-summary-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16M7 14l4-4 3 3 5-6m-4 0h4v4"/></svg></span>'+
-    '<small>Avance General</small></div><strong>'+percent(d.overall)+'</strong></div><div class="portfolio"><div class="portfolio-track">'+segments+'</div><div class="weight-labels">'+weights+'</div></div></div>';
+    '<small>Avance General</small></div><strong>'+percent(d.overall)+'</strong></div><div class="portfolio"><div class="portfolio-track">'+segments+'</div></div></div>';
   return (selected==='all' ? overview : '') +
     '<div class="card calendar-card"><div class="calendar-title"><h2>Cronograma de Implementación</h2><div class="scale-switch" role="group" aria-label="Escala del calendario">'+switcher+'</div></div>'+
     '<div class="calendar-scroll" tabindex="0" aria-label="Calendario de rubros"><div class="calendar-sheet '+calendarScale+'"><div class="schedule-row schedule-axis"><b>Ámbitos</b><b>Avance</b><div><div class="year-bands">'+calendarBands(min,max,'año').map(band).join('')+'</div><div class="date-bands">'+bands.map(band).join('')+'</div></div></div>'+rows+'</div></div>'+
